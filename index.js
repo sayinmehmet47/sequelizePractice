@@ -1,68 +1,14 @@
-import { DataTypes, Sequelize } from 'sequelize';
 import { userQuery } from './user.js';
 import { readFileSync } from 'fs';
 import { captainAndShipQuery } from './captainShip.js';
-
-export const sequelize = new Sequelize('postgres', 'postgres', 'test', {
-  host: 'localhost',
-  dialect: 'postgres',
-});
-
-export const User = sequelize.define(
-  'User',
-  {
-    firstName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    lastName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-
-    age: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-  },
-  // for soft delete(paranoid)
-  {
-    paranoid: true,
-    deletedAt: 'deleted_at',
-  }
-);
-
-const File = sequelize.define('File', {
-  data: {
-    type: DataTypes.BLOB,
-    allowNull: false,
-  },
-});
-
-export const Ship = sequelize.define(
-  'ship',
-  {
-    name: DataTypes.TEXT,
-    crewCapacity: DataTypes.INTEGER,
-    amountOfSails: DataTypes.INTEGER,
-  },
-  { timestamps: false }
-);
-export const Captain = sequelize.define(
-  'captain',
-  {
-    name: DataTypes.TEXT,
-    skillLevel: {
-      type: DataTypes.INTEGER,
-      validate: { min: 1, max: 10 },
-    },
-  },
-  { timestamps: false }
-);
+import User from './models/user.js';
+import File from './models/file.js';
+import { sequelize } from './db.js';
 
 async function createConnection() {
   try {
     await sequelize.authenticate();
+    await User.sync({ force: true });
     await userQuery();
     await fileQuery();
     await captainAndShipQuery();

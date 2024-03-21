@@ -1,4 +1,5 @@
-import { Captain, Ship } from './index.js';
+import Captain from './models/captain.js';
+import Ship from './models/ship.js';
 
 export async function captainAndShipQuery() {
   Captain.hasOne(Ship, {

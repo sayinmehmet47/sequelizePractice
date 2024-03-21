@@ -1,5 +1,5 @@
 import { Op } from 'sequelize';
-import { User, sequelize } from './index.js';
+import User from './models/user.js';
 
 export async function userQuery() {
   await User.sync({ force: true });
