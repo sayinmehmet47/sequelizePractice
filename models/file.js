@@ -6,6 +6,12 @@ const File = sequelize.define('File', {
     type: DataTypes.BLOB,
     allowNull: false,
   },
+  updatedAt: {
+    type: DataTypes.DATE,
+  },
+  createdAt: {
+    type: DataTypes.DATE,
+  },
 });
 
 export default File;

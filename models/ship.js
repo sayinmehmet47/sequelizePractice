@@ -1,8 +1,9 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../db.js';
+import Captain from './captain.js';
 
 const Ship = sequelize.define(
-  'ship',
+  'Ship',
   {
     name: DataTypes.TEXT,
     crewCapacity: DataTypes.INTEGER,

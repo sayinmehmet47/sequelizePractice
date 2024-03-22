@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize';
 import { sequelize } from '../db.js';
 
 const Captain = sequelize.define(
-  'captain',
+  'Captain',
   {
     name: DataTypes.TEXT,
     skillLevel: {

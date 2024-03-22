@@ -19,7 +19,7 @@ const User = sequelize.define(
   },
   {
     paranoid: true,
-    deletedAt: 'deleted_at',
+    deletedAt: 'deletedAt',
   }
 );
 
